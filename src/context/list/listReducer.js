@@ -5,7 +5,8 @@ import {
   DELETE_LIST,
   SET_CURRENT_LIST,
   CLEAR_CURRENT_LIST,
-  LIST_ERROR
+  LIST_ERROR,
+  SET_LIST_LOADING
 } from '../types';
 
 export default (state, action) => {
@@ -45,6 +46,11 @@ export default (state, action) => {
       return {
         ...state,
         currentList: null
+      };
+    case SET_LIST_LOADING:
+      return {
+        ...state,
+        listLoading: true
       };
     case LIST_ERROR:
       return {

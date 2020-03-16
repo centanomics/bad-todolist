@@ -10,7 +10,8 @@ import {
   DELETE_LIST,
   SET_CURRENT_LIST,
   CLEAR_CURRENT_LIST,
-  LIST_ERROR
+  LIST_ERROR,
+  SET_LIST_LOADING
 } from '../types';
 
 const ListState = props => {
@@ -23,10 +24,19 @@ const ListState = props => {
 
   const [state, dispatch] = useReducer(listReducer, initialState);
 
+  // Set List Loading
+
+  const setListLoading = () => {
+    dispatch({
+      type: SET_LIST_LOADING
+    });
+  };
+
   // Get Lists
 
   const getLists = async () => {
     try {
+      setListLoading();
       const res = await axios.get('/lists');
       dispatch({
         type: GET_LISTS,
@@ -121,11 +131,12 @@ const ListState = props => {
   };
 
   return (
-    <ContactContext.Provider
+    <listContext.Provider
       value={{
         lists: state.lists,
         currentList: state.currentList,
         error: state.error,
+        listLoading: state.listLoading,
         getLists,
         addList,
         updateList,
@@ -135,7 +146,7 @@ const ListState = props => {
       }}
     >
       {props.children}
-    </ContactContext.Provider>
+    </listContext.Provider>
   );
 };
 
