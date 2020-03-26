@@ -27,7 +27,7 @@ export default (state, action) => {
       return {
         ...state,
         items: state.items.map(item =>
-          item.id === action.payload.id ? action.payload : list
+          item.id === action.payload.id ? action.payload : item
         ),
         itemLoading: false
       };
@@ -56,6 +56,10 @@ export default (state, action) => {
       return {
         ...state,
         error: action.payload
+      };
+    default:
+      return {
+        ...state
       };
   }
 };

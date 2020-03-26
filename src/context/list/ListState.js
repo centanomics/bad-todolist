@@ -24,6 +24,8 @@ const ListState = props => {
 
   const [state, dispatch] = useReducer(listReducer, initialState);
 
+  const api = 'http://localhost:4000';
+
   // Set List Loading
 
   const setListLoading = () => {
@@ -37,7 +39,7 @@ const ListState = props => {
   const getLists = async () => {
     try {
       setListLoading();
-      const res = await axios.get('/lists');
+      const res = await axios.get(`${api}/lists`);
       dispatch({
         type: GET_LISTS,
         payload: res.data
@@ -45,7 +47,7 @@ const ListState = props => {
     } catch (err) {
       dispatch({
         type: LIST_ERROR,
-        payload: err.response.message
+        payload: err.message
       });
     }
   };
@@ -60,7 +62,7 @@ const ListState = props => {
     };
 
     try {
-      const res = await axios.post('/lists', list, config);
+      const res = await axios.post(`${api}/lists`, list, config);
       dispatch({
         type: ADD_LIST,
         payload: res.data
@@ -68,7 +70,7 @@ const ListState = props => {
     } catch (err) {
       dispatch({
         type: LIST_ERROR,
-        payload: err.response.message
+        payload: err.message
       });
     }
   };
@@ -83,7 +85,7 @@ const ListState = props => {
     };
 
     try {
-      const res = await axios.put(`/lists/${list.id}`, list, config);
+      const res = await axios.put(`${api}/lists/${list.id}`, list, config);
       dispatch({
         type: UPDATE_LIST,
         payload: res.data
@@ -91,7 +93,7 @@ const ListState = props => {
     } catch (err) {
       dispatch({
         type: LIST_ERROR,
-        payload: err.response.message
+        payload: err.message
       });
     }
   };
@@ -100,7 +102,7 @@ const ListState = props => {
 
   const deleteList = async id => {
     try {
-      await axios.delete(`/lists/${id}`);
+      await axios.delete(`${api}/lists/${id}`);
       dispatch({
         type: DELETE_LIST,
         payload: id
@@ -108,7 +110,7 @@ const ListState = props => {
     } catch (err) {
       dispatch({
         type: LIST_ERROR,
-        payload: err.response.message
+        payload: err.message
       });
     }
   };

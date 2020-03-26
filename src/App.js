@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import ListContext from './context/list/listContext';
-import ItemContext from './context/item/itemContext';
+import ListState from './context/list/ListState';
+import ItemState from './context/item/ItemState';
 
-import Lists from './components/Lists';
+import Home from './components/pages/Home';
 
-function App() {
+const App = () => {
   return (
-    <ListContext>
-      <ItemContext>
+    <ListState>
+      <ItemState>
         <Router>
-          <div className='App'>
-            <h1>Kanban Board</h1>
-            <Lists />
-          </div>
+          <Fragment>
+            <h1>hi</h1>
+            <Switch>
+              <Route exact path='/' component={Home} />
+            </Switch>
+          </Fragment>
         </Router>
-      </ItemContext>
-    </ListContext>
+      </ItemState>
+    </ListState>
   );
-}
+};
 
 export default App;

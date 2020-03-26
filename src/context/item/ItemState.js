@@ -24,6 +24,8 @@ const ItemState = props => {
 
   const [state, dispatch] = useReducer(itemReducer, initialState);
 
+  const api = 'http://localhost:4000';
+
   // Set Loading for Items
 
   const setItemLoading = () => {
@@ -37,7 +39,7 @@ const ItemState = props => {
   const getItems = async id => {
     try {
       setItemLoading();
-      const res = await axios.get(`/items?listId=${id}`);
+      const res = await axios.get(`${api}/items?listId=${id}`);
       dispatch({
         type: GET_ITEMS,
         payload: res.data
@@ -60,7 +62,7 @@ const ItemState = props => {
     };
 
     try {
-      const res = await axios.post('/items', item, config);
+      const res = await axios.post(`${api}/items`, item, config);
       dispatch({
         type: ADD_ITEM,
         payload: res.data
@@ -83,7 +85,7 @@ const ItemState = props => {
     };
 
     try {
-      const res = await axios.put(`/lists/${item.id}`, list, config);
+      const res = await axios.put(`${api}/lists/${item.id}`, item, config);
       dispatch({
         type: UPDATE_ITEM,
         payload: res.data
@@ -100,7 +102,7 @@ const ItemState = props => {
 
   const deleteItem = async id => {
     try {
-      await axios.delete(`/lists/${id}`);
+      await axios.delete(`${api}/lists/${id}`);
       dispatch({
         type: DELETE_ITEM,
         payload: id
