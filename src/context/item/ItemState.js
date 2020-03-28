@@ -36,10 +36,10 @@ const ItemState = props => {
 
   // Get Items
 
-  const getItems = async id => {
+  const getItems = async () => {
     try {
       setItemLoading();
-      const res = await axios.get(`${api}/items?listId=${id}`);
+      const res = await axios.get(`${api}/items`);
       dispatch({
         type: GET_ITEMS,
         payload: res.data
