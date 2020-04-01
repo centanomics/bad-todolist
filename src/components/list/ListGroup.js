@@ -12,6 +12,7 @@ const ListGroup = () => {
   const { lists, getLists } = listContext;
   const { getItems } = itemContext;
 
+  // gets lists and items from db
   useEffect(() => {
     if (lists === null) {
       getLists();
@@ -21,7 +22,7 @@ const ListGroup = () => {
   }, []);
 
   return (
-    <div>
+    <div id='listgroup'>
       {lists !== null &&
         lists.map(list => <ListGroupItem listData={list} key={list.id} />)}
     </div>

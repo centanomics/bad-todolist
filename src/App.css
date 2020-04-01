@@ -1,3 +1,65 @@
-.App {
+/*
+-----Variables-----
+*/
+:root {
+  --listBackground: #d3d4d9;
+  --itembackground: #fff9fb;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 3rem;
+}
+
+h1,
+.listGroupItem h3 {
   text-align: center;
+}
+
+/*
+-----List-----
+*/
+
+main {
+  margin-top: 3rem;
+}
+
+#listgroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.listGroupItem {
+  background-color: var(--listBackground);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  width: 200px;
+  height: 350px;
+}
+
+/*
+-----Item-----
+*/
+
+.itemGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 250px;
+  overflow-y: scroll;
+}
+
+.item {
+  background-color: var(--itembackground);
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 5px;
+  width: 90%;
 }

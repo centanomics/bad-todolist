@@ -10,7 +10,7 @@ const ItemGroup = ({ id }) => {
   const { items } = itemContext;
 
   return (
-    <div>
+    <div className='itemGroup'>
       {items !== null &&
         items
           .filter(item => item.listId === id)

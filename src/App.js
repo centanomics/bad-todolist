@@ -13,7 +13,7 @@ const App = () => {
       <ItemState>
         <Router>
           <Fragment>
-            <h1>hi</h1>
+            <h1>Kanban Board</h1>
             <Switch>
               <Route exact path='/' component={Home} />
             </Switch>
